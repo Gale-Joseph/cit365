@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{47BCFD2B-FFE8-4E05-8317-DAFFADD575F7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>W02_MatchCalc</RootNamespace>
-    <AssemblyName>W02_MatchCalc</AssemblyName>
+    <RootNamespace>W02_MathCalc</RootNamespace>
+    <AssemblyName>W02_MathCalc</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

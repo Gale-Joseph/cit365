@@ -1,4 +1,4 @@
-﻿namespace W02_MatchCalc
+﻿namespace W02_MathCalc
 {
     partial class MainForm
     {

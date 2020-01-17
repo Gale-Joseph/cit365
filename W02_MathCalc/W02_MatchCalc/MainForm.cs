@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 
-namespace W02_MatchCalc
+namespace W02_MathCalc
 {
     public partial class MainForm : Form
     {

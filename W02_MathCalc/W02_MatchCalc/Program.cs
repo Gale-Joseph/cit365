@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace W02_MatchCalc
+namespace W02_MathCalc
 {
     static class Program
     {

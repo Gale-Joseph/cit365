@@ -29,5 +29,23 @@ namespace MegaDesk_Gale
         {
             this.Close();
         }
+
+        private void ViewAllQuotesButton_Click(object sender, EventArgs e)
+        {
+
+            ViewAllQuotes viewQuotes = new ViewAllQuotes();
+            viewQuotes.Tag = this;
+            viewQuotes.Show(this);
+            this.Hide();
+
+        }
+
+        private void SearchQuotesButton_Click(object sender, EventArgs e)
+        {
+            SearchQuotes searchQuotes = new SearchQuotes();
+            searchQuotes.Tag = this;
+            searchQuotes.Show(this);
+            this.Hide();
+        }
     }
 }

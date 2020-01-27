@@ -68,6 +68,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchQuotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchQuotes.Designer.cs">
+      <DependentUpon>SearchQuotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewAllQuotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewAllQuotes.Designer.cs">
+      <DependentUpon>ViewAllQuotes.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddQuote.resx">
       <DependentUpon>AddQuote.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +98,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SearchQuotes.resx">
+      <DependentUpon>SearchQuotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewAllQuotes.resx">
+      <DependentUpon>ViewAllQuotes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

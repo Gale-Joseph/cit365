@@ -15,6 +15,7 @@ namespace MegaDesk_Gale
         public MainMenu()
         {
             InitializeComponent();
+            FormState.MainPage = this;
         }
 
         private void AddQuoteButton_Click(object sender, EventArgs e)
@@ -27,7 +28,7 @@ namespace MegaDesk_Gale
 
         private void closeApp_Click(object sender, EventArgs e)
         {
-            this.Close();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void ViewAllQuotesButton_Click(object sender, EventArgs e)

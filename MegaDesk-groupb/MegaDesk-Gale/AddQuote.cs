@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* This form creates a Desk and DeskQuote object
+ * This form populates each object with user input
+ * The user enters form by clicking on "Add quote" on Main Menu
+ * The user exits the form by clicking "Submit" button on this form
+ */
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,24 +19,23 @@ namespace MegaDesk_Gale
 {
     public partial class AddQuote : Form
     {
-
+        /*Create desk and deskquote objects for user input*/
         Desk newDesk = new Desk();
         DeskQuote newQuote = new DeskQuote();
-        
-        
 
+        /*Constructor*/
         public AddQuote()
         {
             InitializeComponent();
         }
 
-        //Convert datepicker value to a customized string and store in quote object
+        /*Convert datepicker value to a customized string and store in newQuote object*/
         private void dateBox_Leave(object sender, EventArgs e)
         {
             newQuote.currentDate = dateBox.Value.ToString("dd MMM yyyy");
         }
 
-        //validate firstname: ensure that a value is put in
+        /*validate firstname: ensure that a value is put in*/
         private void firstName_Validate(object sender, EventArgs e)
         {
             string rawInputFirst = fnBox.Text;
@@ -40,13 +46,13 @@ namespace MegaDesk_Gale
             }
             else
             {
-                //add to Desk Quote object: 
+                /*add to Desk Quote object: */
                 newQuote.firstName = rawInputFirst;
                
             }
         }
 
-        //validate lastname: ensure that a value is put in
+        /*validate lastname: ensure that a value is put in*/
         private void lastName_Validate(object sender, EventArgs e)
         {
             string rawInputLast = lnBox.Text;
@@ -56,14 +62,14 @@ namespace MegaDesk_Gale
             }
             else
             {
-                //add to Desk Quote object: 
+                /*add to Desk Quote object: */
                 newQuote.lastName = rawInputLast;
            
             }
         }
 
 
-        //validate widthbox for correct number range and integers
+        /*validate widthbox for correct number range and integers*/
         private void widthBox_Validate(object sender, EventArgs e)
         {
             string input = widthBox.Text;
@@ -76,7 +82,7 @@ namespace MegaDesk_Gale
                     widthE.Text = "Please enter a minimum of 24 or maximum of 96";
                     widthBox.Text = "";
                 }
-                //add to Desk Object
+                /*add to Desk Object*/
                 newDesk.Width = result;
                 
             }
@@ -87,17 +93,17 @@ namespace MegaDesk_Gale
             }
         }
 
-        //validate depthbox for correct number range and integers, but using Key down event
+        /*validate depthbox for correct number range and integers, but using Key down event*/
         private void depthBox_KeyDown(object sender, KeyEventArgs e)
         {
-            //put user input into a string variable
+            /*put user input into a string variable*/
             string input = depthBox.Text;
 
 
-            //set the label9.Text to empty in case an exisiting error message is present
+            /*set the depthE.Text to empty in case an exisiting error message is present*/
             depthE.Text = "";
 
-            //create a for loop to validate each character against special characters and non-digits
+            /*create a for loop to validate each character against special characters and non-digits*/
             for (int ctr = 0; ctr < input.Length; ctr++)
             {
                 if (Char.IsControl(input, ctr) || !Char.IsDigit(input, ctr))
@@ -134,7 +140,7 @@ namespace MegaDesk_Gale
             
         }
 
-        //validate depthbox when leaving field (instead of keying down)
+        /*validate depthbox when leaving field (instead of keying down)*/
         private void depthBox_Validate(object sender, EventArgs e)
         {
             string input = depthBox.Text;
@@ -186,7 +192,7 @@ namespace MegaDesk_Gale
 
         }
 
-        //validate drawerbox when leaving field
+        /*validate drawerbox when leaving field*/
         private void drawerBox_Validate(object sender, EventArgs e)
         {
             string input = drawerBox.Text;
@@ -222,8 +228,7 @@ namespace MegaDesk_Gale
                 string input = rawInput.ToLower();
                 materialE.Text = "";
 
-                //add to Desk Object
-                //parse a string into Enum - Material
+                /* (enum type)Enum.Parse(Type,String) converts any string into enumerated object*/
                 newDesk.Surface = (Material)Enum.Parse(typeof(Material), input);
 
             }
@@ -248,8 +253,8 @@ namespace MegaDesk_Gale
                 int input = int.Parse(rawInput);
                 if (input == 0)
                 {
-                    //since default time is 14 for no rush delivery, store 14 to object deliveryTime:
-                    //0 is option in case user accidently chooses a number field
+                    /* since default time is 14 for no rush delivery, store 14 to object deliveryTime:
+                     * 0 is option in case user accidently chooses a number field*/
                     newQuote.deliveryTime = 14;
                 }
                 else
@@ -261,7 +266,7 @@ namespace MegaDesk_Gale
 
         }
 
-        //exit button to main menu:
+        /*exit button to main menu:*/
         private void exitButton_Click(object sender, EventArgs e)
         {
             MainMenu viewMainMenu = (MainMenu)Tag;
@@ -270,7 +275,7 @@ namespace MegaDesk_Gale
         }
 
 
-        //submit button: ensure all fields are not empty
+        /*submit button: ensure all fields are not empty*/
         private void submitQuote_Click(object sender, EventArgs e)
         {
 
@@ -284,8 +289,13 @@ namespace MegaDesk_Gale
                 submitE.Text = "Please fill out all required fields";
 
             }
+            //if everything is filled in, proceed to processing:
             else
             {
+                //store quote to JSON file calling private function
+                
+                Json.Store(newQuote);
+                
                 //send to confirmation page viewQuote
                 DisplayQuote viewQuote = new DisplayQuote();
                 viewQuote.Tag = this;
@@ -299,11 +309,15 @@ namespace MegaDesk_Gale
 
         }
 
+        /*This button returns user to main menu*/
         private void exitAddQuote_Click(object sender, EventArgs e)
         {
             MainMenu viewMainMenu = new MainMenu();
             viewMainMenu.Show(this);
             this.Hide();
         }
+
+        /*private function for storing to JSON file, only used in AddQuote.cs class*/
+
     }
 }

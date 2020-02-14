@@ -1,13 +1,19 @@
-﻿using System;
+﻿/*This class contains the Desk class and enumerated "Material" type*/
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MegaDesk_Gale
-{
+namespace MegaDesk_Gale { 
+
+    /*this causes the surface to be saved as the string instead of number*/
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum Material
     {
+       
         oak = 200,
         laminate = 100,
         pine = 50,

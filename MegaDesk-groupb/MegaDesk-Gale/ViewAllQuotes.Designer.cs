@@ -20,6 +20,8 @@
             base.Dispose(disposing);
         }
 
+
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -30,6 +32,8 @@
         {
             this.viewQuoteExitButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.allQuotesGridView = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.allQuotesGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // viewQuoteExitButton
@@ -53,15 +57,25 @@
             this.label8.TabIndex = 53;
             this.label8.Text = "Quotes";
             // 
+            // allQuotesGridView
+            // 
+            this.allQuotesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.allQuotesGridView.Location = new System.Drawing.Point(41, 76);
+            this.allQuotesGridView.Name = "allQuotesGridView";
+            this.allQuotesGridView.Size = new System.Drawing.Size(518, 413);
+            this.allQuotesGridView.TabIndex = 56;
+            // 
             // ViewAllQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.allQuotesGridView);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.viewQuoteExitButton);
             this.Name = "ViewAllQuotes";
             this.Text = "ViewAllQuotes";
+            ((System.ComponentModel.ISupportInitialize)(this.allQuotesGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -71,5 +85,6 @@
 
         private System.Windows.Forms.Button viewQuoteExitButton;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView allQuotesGridView;
     }
 }

@@ -32,7 +32,7 @@ namespace MyScriptureJournal
         public string NameSort { get; set; }
         public string DateSort { get; set; }
         public string CurrentFilter { get; set; }
-        public string CurrentFilterNote { get; set; }
+        public string CurrentFilterNotes { get; set; }
         public string CurrentSort { get; set; }
         public PaginatedList<Scripture> Scriptures { get; set; }
       
@@ -40,7 +40,7 @@ namespace MyScriptureJournal
 
 
         /* ######################## async Task OnGetAsync #####################################*/
-        public async Task OnGetAsync(string sortOrder, string currentFilter, string SearchString, string currentFilterNote, string SearchStringNotes, int? pageIndex)
+        public async Task OnGetAsync(string sortOrder, string currentFilter, string SearchString, string currentFilterNotes, string SearchStringNotes, int? pageIndex)
         {
 
             //select all scriptures from database
@@ -59,31 +59,52 @@ namespace MyScriptureJournal
 
             //razor-tutorial
             CurrentSort = sortOrder;
-
             NameSort = sortOrder== "Book" ? "name_desc" : "Book"; 
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
 
-            if (SearchString != null && SearchStringNotes !=null)
+            if (SearchString != null)
             {
                 pageIndex = 1;
             }
             else
             {
                 SearchString = currentFilter;
-                SearchStringNotes = currentFilterNote;
+               
             }
+            if (SearchStringNotes != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                SearchStringNotes = currentFilterNotes;
+
+            }
+           
 
             CurrentFilter = SearchString;
-            CurrentFilterNote = SearchStringNotes;
+            CurrentFilterNotes = SearchStringNotes;
           
             IQueryable<Scripture> scripturesIQ = from s in _context.Scripture select s;
+
+            /*If either scripture search string or notes search string is filled in
+             * scriptureIQ will contain whatever is in the fields*/
 
             if (!String.IsNullOrEmpty(SearchString)|| !String.IsNullOrEmpty(SearchStringNotes))
             {
                 scripturesIQ = scripturesIQ.Where(s => s.Book.Contains(SearchString)
-                                        || s.Notes.Contains(SearchStringNotes));
+                                       || s.Notes.Contains(SearchStringNotes));
             }
 
+            /*If BOTH scripture search string AND notes search string are filled in
+             * scriptureIQ will contain scriptures with BOTH arguments */
+            if (!String.IsNullOrEmpty(SearchString) & !String.IsNullOrEmpty(SearchStringNotes))
+            {
+                scripturesIQ = scripturesIQ.Where(s => s.Book.Contains(SearchString)
+                                       & s.Notes.Contains(SearchStringNotes));
+            }
+
+            //create a process for when scripture and date are clicked to toggle order:
             switch (sortOrder)
             {
                 case "name_desc":
@@ -103,9 +124,9 @@ namespace MyScriptureJournal
                     break;
             }
 
-            int pageSize = 3;
+/*            int pageSize = 3;
             Scriptures = await PaginatedList<Scripture>.CreateAsync(
-                scripturesIQ.AsNoTracking(), pageIndex ?? 1, pageSize);
+                scripturesIQ.AsNoTracking(), pageIndex ?? 1, pageSize);*/
 
 
             if (sortOrder == null)

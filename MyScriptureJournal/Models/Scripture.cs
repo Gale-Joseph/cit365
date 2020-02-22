@@ -15,7 +15,7 @@ namespace MyScriptureJournal.Models
         public string Notes { get; set; }
         //using System.ComponentModel.DataAnnotations;
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd MM yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:MMM dd yyyy}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate { get; set; }
     }
 }

@@ -13,11 +13,12 @@
 <form>
     <p>
         Book:  <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-        <input type="submit" value="Search" class="btn btn-primary" /> |
+        <input type="submit" value="Search Books" class="btn btn-primary" /> |
         <a asp-page="./Index">Back to full List</a><br />
-
-        Notes: <input type="text" asp-for="SearchStringNotes" />
-        <input type="submit" value="Filter" />
+    </p>
+    <p>
+        Notes: <input type="text" name="SearchStringNotes" value="@Model.CurrentFilterNotes"/>
+        <input type="submit" value="Search Notes" class="btn btn-primary" />
     </p>
 </form>
 <table class="table">
@@ -25,7 +26,7 @@
         <tr>
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort"
-                   asp-route-currentFilter="@Model.CurrentFilter">
+                   asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentFilterNotes="@Model.CurrentFilterNotes">
                     @Html.DisplayNameFor(model => model.Scripture[0].Book)
                 </a>
                
@@ -41,7 +42,7 @@
             </th>
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort"
-                   asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentFilterNote="@Model.CurrentFilterNote">
+                   asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentFilterNotes="@Model.CurrentFilterNotes">
                     @Html.DisplayNameFor(model => model.Scripture[0].AddedDate)
                 </a>
             </th>
@@ -77,23 +78,7 @@
     </tbody>
 </table>
 @{
-    var prevDisabled = !Model.Scriptures.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.Scriptures.HasNextPage ? "disabled" : "";
+
 }
 
-<a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-pageIndex="@(Model.Scriptures.PageIndex - 1)"
-   asp-route-currentFilter="@Model.CurrentFilter"
-   asp-route-currentFilterNote="@Model.CurrentFilterNote"
-   class="btn btn-primary @prevDisabled">
-    Previous
-</a>
-<a asp-page="./Index"
-   asp-route-sortOrder="@Model.CurrentSort"
-   asp-route-pageIndex="@(Model.Scriptures.PageIndex + 1)"
-   asp-route-currentFilter="@Model.CurrentFilter"
-   asp-route-currentFilterNote="@Model.CurrentFilterNote"
-   class="btn btn-primary @nextDisabled">
-    Next
-</a>
+

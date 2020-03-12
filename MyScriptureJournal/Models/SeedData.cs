@@ -27,7 +27,7 @@ namespace MyScriptureJournal.Models
                         Chapter = 3,
                         Verse = 7,
                         Notes = "#obedience #obey",
-                        AddedDate = DateTime.Parse("2020-2-12"),
+                        AddedDate = DateTime.Parse("2020-2-05"),
                     },
                     new Scripture
                     {
@@ -35,7 +35,7 @@ namespace MyScriptureJournal.Models
                         Chapter = 2,
                         Verse = 25,
                         Notes = "#joy",
-                        AddedDate = DateTime.Parse("2020-2-12"),
+                        AddedDate = DateTime.Parse("2020-2-04"),
                     },
                     new Scripture
                     {
@@ -43,7 +43,7 @@ namespace MyScriptureJournal.Models
                         Chapter = 2,
                         Verse = 32,
                         Notes = "#obedience #obey",
-                        AddedDate = DateTime.Parse("2020-2-12"),
+                        AddedDate = DateTime.Parse("2020-2-03"),
                     },
                     new Scripture
                     {
@@ -51,7 +51,7 @@ namespace MyScriptureJournal.Models
                         Chapter = 2,
                         Verse = 16,
                         Notes = "#agency #choice",
-                        AddedDate = DateTime.Parse("2020-2-12"),
+                        AddedDate = DateTime.Parse("2020-2-02"),
                     },
                     new Scripture
                     {
@@ -59,7 +59,7 @@ namespace MyScriptureJournal.Models
                         Chapter = 2,
                         Verse = 27,
                         Notes = "#agency #free",
-                        AddedDate = DateTime.Parse("2020-2-12"),
+                        AddedDate = DateTime.Parse("2020-2-01"),
                     }
                 );
                 context.SaveChanges();
